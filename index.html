@@ -1,0 +1,672 @@
+# LuxLift Elevator Website (HTML Version)
+
+## index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LuxLift Elevators</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#ffffff;
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      backdrop-filter:blur(15px);
+      background:rgba(255,255,255,0.7);
+      z-index:1000;
+      border-bottom:1px solid #ddd;
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:800;
+    }
+
+    .menu-btn{
+      display:none;
+      font-size:32px;
+      cursor:pointer;
+      color:#111;
+      z-index:2000;
+    }
+
+    nav{
+      transition:0.5s;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#222;
+      margin-left:25px;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#666;
+    }
+
+    .hero{
+      height:100vh;
+      background:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop') center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(4px);
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      width:90%;
+      max-width:900px;
+      animation:fadeIn 2s ease;
+    }
+
+    .hero h1{
+      font-size:80px;
+      font-weight:800;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:20px;
+      color:#444;
+      line-height:1.8;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:35px;
+      padding:16px 40px;
+      background:#111;
+      color:#fff;
+      text-decoration:none;
+      border-radius:50px;
+      transition:0.4s;
+      font-size:18px;
+    }
+
+    .btn:hover{
+      transform:translateY(-5px);
+      background:#333;
+    }
+
+    section{
+      padding:120px 8%;
+    }
+
+    .page{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+      margin-bottom:120px;
+    }
+
+    .page img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      border-radius:35px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.15);
+      transition:0.5s;
+    }
+
+    .page img:hover{
+      transform:scale(1.03);
+    }
+
+    .page iframe{
+      width:100%;
+      height:320px;
+      border:none;
+      border-radius:35px;
+      margin-top:25px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.15);
+    }
+
+    .page h2{
+      font-size:55px;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    .page p{
+      color:#555;
+      line-height:1.9;
+      font-size:18px;
+      margin-bottom:25px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:30px;
+      margin-top:60px;
+    }
+
+    .card{
+      background:#fff;
+      padding:40px;
+      border-radius:35px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.08);
+      transition:0.4s;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card h3{
+      font-size:28px;
+      margin-bottom:15px;
+    }
+
+    .contact{
+      background:#f7f7f7;
+      border-radius:40px;
+      padding:60px;
+      margin-top:60px;
+    }
+
+    .contact h2{
+      text-align:center;
+      margin-bottom:40px;
+      font-size:50px;
+    }
+
+    .inputs{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+    }
+
+    input,
+    textarea{
+      width:100%;
+      padding:18px;
+      border:none;
+      border-radius:18px;
+      outline:none;
+      background:#fff;
+      font-size:16px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    textarea{
+      margin-top:25px;
+      height:180px;
+      resize:none;
+    }
+
+    footer{
+      background:#111;
+      color:#fff;
+      padding:80px 8%;
+      margin-top:100px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:40px;
+    }
+
+    footer h3{
+      margin-bottom:20px;
+      font-size:28px;
+    }
+
+    footer p,
+    footer li{
+      color:#bbb;
+      line-height:2;
+      list-style:none;
+    }
+
+    .copy{
+      margin-top:50px;
+      text-align:center;
+      border-top:1px solid #333;
+      padding-top:30px;
+      color:#888;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:1200px){
+      .hero h1{
+        font-size:64px;
+      }
+
+      .page h2{
+        font-size:44px;
+      }
+    }
+
+    @media(max-width:900px){
+
+      header{
+        padding:18px 5%;
+      }
+
+      .logo{
+        font-size:26px;
+      }
+
+      .hero{
+        padding:120px 20px 60px;
+        height:auto;
+        min-height:100vh;
+      }
+
+      .hero h1{
+        font-size:48px;
+        line-height:1.2;
+      }
+
+      .hero p{
+        font-size:17px;
+        line-height:1.8;
+      }
+
+      section{
+        padding:90px 5%;
+      }
+
+      .page{
+        grid-template-columns:1fr;
+        gap:35px;
+        margin-bottom:90px;
+      }
+
+      .page h2{
+        font-size:38px;
+        line-height:1.3;
+      }
+
+      .page p{
+        font-size:16px;
+        line-height:1.9;
+      }
+
+      .page img{
+        height:300px;
+      }
+
+      .page iframe{
+        height:240px;
+      }
+
+      .contact{
+        padding:35px 20px;
+      }
+
+      .contact h2{
+        font-size:38px;
+      }
+
+      .inputs{
+        grid-template-columns:1fr;
+      }
+
+      .btn{
+        width:100%;
+        text-align:center;
+      }
+
+      nav{
+        position:fixed;
+        top:0;
+        right:-100%;
+        width:280px;
+        height:100vh;
+        background:rgba(255,255,255,0.96);
+        backdrop-filter:blur(20px);
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:30px;
+        box-shadow:-10px 0 40px rgba(0,0,0,0.1);
+      }
+
+      nav.active{
+        right:0;
+      }
+
+      nav a{
+        margin-left:0;
+        font-size:20px;
+      }
+
+      .menu-btn{
+        display:block;
+      }
+    }
+
+    @media(max-width:600px){
+
+      .hero h1{
+        font-size:36px;
+      }
+
+      .hero p{
+        font-size:15px;
+      }
+
+      .page h2{
+        font-size:30px;
+      }
+
+      .card{
+        padding:28px;
+      }
+
+      .card h3{
+        font-size:24px;
+      }
+
+      .page img{
+        height:240px;
+      }
+
+      .page iframe{
+        height:200px;
+      }
+
+      footer{
+        padding:60px 5%;
+      }
+
+      footer h3{
+        font-size:24px;
+      }
+
+      input,
+      textarea{
+        font-size:15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">LuxLift</div>
+
+  <div class="menu-btn" onclick="toggleMenu()">
+    ☰
+  </div>
+
+  <nav id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Future Of Elevators</h1>
+
+    <p>
+      Premium elevator website with white soft design, animations,
+      videos, glassmorphism effects and modern luxury UI.
+    </p>
+
+    <a href="#about" class="btn">Explore More</a>
+  </div>
+</section>
+
+<section id="about">
+
+  <div class="page">
+    <div>
+      <h2>About LuxLift</h2>
+
+      <p>
+        We create futuristic residential and commercial elevator systems
+        with luxury design and advanced smart technology.
+      </p>
+
+      <a href="#services" class="btn">Learn More</a>
+    </div>
+
+    <div>
+      <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1400&auto=format&fit=crop">
+
+      <iframe src="https://www.youtube.com/embed/8mAITcNt710" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="page" id="services">
+    <div>
+      <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1400&auto=format&fit=crop">
+
+      <iframe src="https://www.youtube.com/embed/WNeLUngb-Xg" allowfullscreen></iframe>
+    </div>
+
+    <div>
+      <h2>Glass Elevators</h2>
+
+      <p>
+        Stylish panoramic glass elevators with smooth motion and premium interiors.
+      </p>
+
+      <a href="#projects" class="btn">View Projects</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <div>
+      <h2>Commercial Lifts</h2>
+
+      <p>
+        Heavy duty elevators for malls, offices, hospitals and smart buildings.
+      </p>
+
+      <a href="#contact" class="btn">Get Quote</a>
+    </div>
+
+    <div>
+      <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1400&auto=format&fit=crop">
+
+      <iframe src="https://www.youtube.com/embed/nA1Aqp0sPQo" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <div class="cards" id="projects">
+
+    <div class="card">
+      <h3>Luxury Design</h3>
+      <p>Elegant white glassmorphism UI with modern animations.</p>
+    </div>
+
+    <div class="card">
+      <h3>Smart Technology</h3>
+      <p>AI based elevator systems with advanced safety features.</p>
+    </div>
+
+    <div class="card">
+      <h3>24/7 Support</h3>
+      <p>Professional maintenance and technical support services.</p>
+    </div>
+
+  </div>
+
+  <div class="contact" id="contact">
+
+    <h2>Contact Us</h2>
+
+    <div class="inputs">
+      <input type="text" placeholder="Your Name">
+      <input type="email" placeholder="Your Email">
+      <input type="text" placeholder="Phone Number">
+      <input type="text" placeholder="City">
+    </div>
+
+    <textarea placeholder="Tell us about your project"></textarea>
+
+    <center>
+      <a href="#" class="btn">Send Inquiry</a>
+    </center>
+
+  </div>
+
+</section>
+
+<footer>
+
+  <div class="footer-grid">
+
+    <div>
+      <h3>LuxLift</h3>
+      <p>
+        Premium luxury elevator solutions for homes, malls and commercial buildings.
+      </p>
+    </div>
+
+    <div>
+      <h3>Services</h3>
+      <ul>
+        <li>Residential Lifts</li>
+        <li>Commercial Lifts</li>
+        <li>Glass Elevators</li>
+        <li>Maintenance</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Company</h3>
+      <ul>
+        <li>About</li>
+        <li>Projects</li>
+        <li>Testimonials</li>
+        <li>Careers</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Contact</h3>
+      <ul>
+        <li>support@luxlift.com</li>
+        <li>+91 9876543210</li>
+        <li>India</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="copy">
+    © 2026 LuxLift Elevators. All Rights Reserved.
+  </div>
+
+</footer>
+
+<script>
+
+// Smooth scrolling for all links
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+  anchor.addEventListener('click', function (e) {
+
+    const targetId = this.getAttribute('href');
+
+    if(targetId !== '#'){
+      e.preventDefault();
+
+      const target = document.querySelector(targetId);
+
+      if(target){
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+
+  });
+
+});
+
+
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+
+const navLinks = document.querySelectorAll('#mobileMenu a');
+const mobileMenu = document.getElementById('mobileMenu');
+const menuBtn = document.querySelector('.menu-btn');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('active');
+  });
+});
+
+// Close menu when clicking outside
+
+document.addEventListener('click', function(e){
+
+  const clickedInsideMenu = mobileMenu.contains(e.target);
+  const clickedMenuBtn = menuBtn.contains(e.target);
+
+  if(!clickedInsideMenu && !clickedMenuBtn){
+    mobileMenu.classList.remove('active');
+  }
+
+});
+
+</script>
+</body>
+</html>
